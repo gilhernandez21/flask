@@ -1,9 +1,23 @@
 {% extends "bootstrap/base.html" %}
 {% block content%}
+<div class="container">
+
 <h1>Hello</h1>
 {% set types = [] %}
 {% for col in data['valueDetailList'] -%}
 {{types.append(col['@type'] ) or ""}}
 {% endfor %}
-{{types}}
+
+<label for="typeSelect">Please make a selection Below...</label>
+<p></p>
+<select id="typeSelect"class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  {% for typ in types -%}
+  <option value={{typ}}>{{typ}}</option>
+  {% endfor %}
+</select>
+
+<button type="submit" name="submit" id="submitButt">Submit</button>
+
+</div>
 {% endblock %}
