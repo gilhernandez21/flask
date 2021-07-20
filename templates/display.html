@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Here is the File you submitted</h1>
-    <ul>
-      {{customFile}}
-    </ul>
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+{% block content%}
+<h1>Hello</h1>
+{% set types = [] %}
+{% for col in data['valueDetailList'] -%}
+{{types.append(col['@type'] ) or ""}}
+{% endfor %}
+{{types}}
+{% endblock %}
