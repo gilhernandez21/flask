@@ -34,6 +34,9 @@ def index():
 
 @app.route('/display', methods = ['GET','POST'])
 def display():
+    #form = MyForm()
+    #if form.validate_on_submit():
+
     return render_template('display.html')
 
 if __name__ == "__main__":
