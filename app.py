@@ -1,16 +1,16 @@
 from flask import Flask, render_template, request
-#import os.path
-import glob
-import os
 import json
 from flask_wtf import FlaskForm
 from wtforms import FileField
 from flask_uploads import configure_uploads, UploadSet,DATA
+from flask_bootstrap import Bootstrap
+
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasecret'
 app.config['UPLOADED_ATTACHMENTS_DEST'] = 'uploads/attachments'
+Bootstrap(app)
 
 attachments = UploadSet('attachments',DATA)
 configure_uploads(app,attachments)
@@ -29,9 +29,12 @@ def index():
         with open(filePath+str(filename), "r") as f:
             data = json.load(f)
 
-        return data
+        return render_template('display.html',data = data)
     return render_template('index.html',form = form)
 
+@app.route('/display', methods = ['GET','POST'])
+def display():
+    return render_template('display.html')
 
 if __name__ == "__main__":
     app.run()
